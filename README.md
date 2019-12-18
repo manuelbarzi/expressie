@@ -1,4 +1,4 @@
-# Not Express
+# Simple remake of Express JS using module `http`
 
 ## Demo
 
