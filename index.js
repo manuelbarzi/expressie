@@ -1,46 +1,38 @@
 const http = require('http')
 
+module.exports = function() {
+	const gets = {}
+	const posts = {}
+	// TODO other methods
 
+	const server = http.createServer((req, res) => {
+		switch (req.method) {
+			case 'GET':
+				const handle = gets[req.path]
 
-function expressless() {
-    const gets = {}
-    const posts = {}
-    // TODO other methods
+				if (handle) handle(req, res)
 
-    const server = http.createServer((req, res) => {
-        switch (req.method) {
-            case 'GET':
-                const handle = gets[req.path]
+				break
+			case 'POST':
+				const handle = posts[req.path]
 
-                if (handle) handle(req, res)
+				if (handle) handle(req, res)
 
-                break
-            case 'POST':
-                const handle = posts[req.path]
+				break
+			// TODO other methods
+		}
 
-                if (handle) handle(req, res)
-                
-                break
-            // TODO other methods
-        }
+	})
 
-    })
+	server.get = function(path, handler) {
+		gets[path] = handler
+	}
 
-    server.get = function(path, handler) {
-        gets[path] = handler
-    }
+	server.post = function(path, handler) {
+		posts[path] = handler
+	}
 
-    server.post = function(path, handler) {
-        posts[path] = handler
-    }
+	// TODO other methods
 
-    // TODO other methods
-
-    return server
+	return server
 }
-
-// demo
-
-const app = expressless()
-
-app.get('hello-world', (req, res) => res.end('Hello, World!'))
