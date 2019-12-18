@@ -1,38 +1,31 @@
 const http = require('http')
+const url = require('url')
 
 module.exports = function() {
-	const gets = {}
-	const posts = {}
-	// TODO other methods
+	const handlers = {}
 
 	const server = http.createServer((req, res) => {
-		switch (req.method) {
-			case 'GET':
-				const handle = gets[req.path]
+		const { method } = req
+		const { pathname: path, query } = url.parse(req.url, true)
 
-				if (handle) handle(req, res)
+		query && (req.query = query)
 
-				break
-			case 'POST':
-				const handle = posts[req.path]
+		let _handler
 
-				if (handle) handle(req, res)
-
-				break
-			// TODO other methods
-		}
-
+		((_handler = handlers[method]) && (_handler = _handler[path])) && _handler(req, res) || res.end(`Cannot ${method} on ${path}`)
 	})
 
+	server.add = function(method, path, handler) {
+		(handlers[method] || (handlers[method] = {}))[path] = handler
+	}
+
 	server.get = function(path, handler) {
-		gets[path] = handler
+		this.add('GET', path, handler)
 	}
 
 	server.post = function(path, handler) {
-		posts[path] = handler
+		this.add('POST', path, handler)
 	}
-
-	// TODO other methods
 
 	return server
 }
