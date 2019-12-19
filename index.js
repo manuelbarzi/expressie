@@ -1,9 +1,21 @@
 const http = require('http')
 const url = require('url')
+const { Server } = http
+
+Server.prototype.add = function(method, path, handler) {
+	((this.handlers || (this.handlers = {}) ) && (this.handlers[method] || (this.handlers[method] = {})))[path] = handler
+	debugger
+}
+
+Server.prototype.get = function(path, handler) {
+	this.add('GET', path, handler)
+}
+
+Server.prototype.post = function(path, handler) {
+	this.add('POST', path, handler)
+}
 
 module.exports = function() {
-	const handlers = {}
-
 	const server = http.createServer((req, res) => {
 		const { method } = req
 		const { pathname: path, query } = url.parse(req.url, true)
@@ -12,20 +24,8 @@ module.exports = function() {
 
 		let _handler
 
-		((_handler = handlers[method]) && (_handler = _handler[path])) && _handler(req, res) || res.end(`Cannot ${method} on ${path}`)
+		(server.handlers && (_handler = server.handlers[method]) && (_handler = _handler[path])) && (_handler(req, res) || true) || res.end(`Cannot ${method} on ${path}`)
 	})
-
-	server.add = function(method, path, handler) {
-		(handlers[method] || (handlers[method] = {}))[path] = handler
-	}
-
-	server.get = function(path, handler) {
-		this.add('GET', path, handler)
-	}
-
-	server.post = function(path, handler) {
-		this.add('POST', path, handler)
-	}
 
 	return server
 }
