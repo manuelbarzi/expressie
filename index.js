@@ -4,7 +4,6 @@ const { Server } = http
 
 Server.prototype.add = function(method, path, handler) {
 	((this.handlers || (this.handlers = {}) ) && (this.handlers[method] || (this.handlers[method] = {})))[path] = handler
-	debugger
 }
 
 Server.prototype.get = function(path, handler) {
