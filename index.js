@@ -1,16 +1,15 @@
 const http = require('http')
 const url = require('url')
-const { Server } = http
 
-Server.prototype.add = function(method, path, handler) {
+function add(method, path, handler) {
 	((this.handlers || (this.handlers = {}) ) && (this.handlers[method] || (this.handlers[method] = {})))[path] = handler
 }
 
-Server.prototype.get = function(path, handler) {
+function get(path, handler) {
 	this.add('GET', path, handler)
 }
 
-Server.prototype.post = function(path, handler) {
+function post(path, handler) {
 	this.add('POST', path, handler)
 }
 
@@ -25,6 +24,10 @@ module.exports = function() {
 
 		(server.handlers && (_handler = server.handlers[method]) && (_handler = _handler[path])) && (_handler(req, res) || true) || res.end(`Cannot ${method} on ${path}`)
 	})
+
+	server.add = add
+	server.get = get
+	server.post = post
 
 	return server
 }
