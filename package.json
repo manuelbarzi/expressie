@@ -1,20 +1,20 @@
 {
-  "name": "not-express",
-  "version": "1.0.2",
-  "description": "Simple remake of Express JS",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manuelbarzi/not-express.git"
-  },
-  "keywords": ["not", "express", "js", "not-express", "express-js", "http", "server"],
-  "author": "manuelbarzi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/manuelbarzi/not-express/issues"
-  },
-  "homepage": "https://github.com/manuelbarzi/not-express#readme"
+	"name": "not-express",
+	"version": "1.0.3",
+	"description": "Simple remake of Express",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/manuelbarzi/not-express.git"
+	},
+	"keywords": ["not", "express", "js", "not-express", "express-js", "http", "server", "remake", "simple"],
+	"author": "manuelbarzi",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/manuelbarzi/not-express/issues"
+	},
+	"homepage": "https://github.com/manuelbarzi/not-express#readme"
 }
