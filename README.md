@@ -1,4 +1,4 @@
-# Simple starter remake of Express JS
+# Simple remake of Express JS
 
 ## Demo
 
