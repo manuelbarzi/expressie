@@ -1,6 +1,6 @@
 {
   "name": "not-express",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple remake of Express JS",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/manuelbarzi/not-express.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["not", "express", "js", "not-express", "express-js", "http", "server"],
+  "author": "manuelbarzi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/manuelbarzi/not-express/issues"
