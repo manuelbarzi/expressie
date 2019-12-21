@@ -27,5 +27,21 @@ module.exports = function() {
 		this.add('POST', path, handler)
 	}
 
+	server.put = function(path, handler) {
+		this.add('PUT', path, handler)
+	}
+
+	server.patch = function(path, handler) {
+		this.add('PATCH', path, handler)
+	}
+
+	server.delete = function(path, handler) {
+		this.add('DELETE', path, handler)
+	}
+
+	server.options = function(path, handler) {
+		this.add('OPTIONS', path, handler)
+	}
+
 	return server
 }
